@@ -50,6 +50,7 @@
                 <div class="notelist-feed">
                     <a href="{{ site.baseurl }}{{note_items.url}}">
                         <h6>{{ note_items.title }}</h6>
+                        <p class="updated-feed">updated at {{ note_items.date | date: "%-d %B %Y" }}</p>
                         <p class="excerpt">
                             {{ note_items.content | strip_html | strip | remove: "[[" | remove: "]]" | remove: "-" | escape | truncate: 200 }}
                         </p>

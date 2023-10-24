@@ -31,9 +31,9 @@
 
 <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Hiran Venugopalan" property="og:site_name" />
+    <meta content="Yeonjun Kim" property="og:site_name" />
     <meta
-        content="Product and Type Designer | UI UX | Design Mentoring"
+        content="Data Engineer"
         property="og:description">
     <meta content="{{ site.url }}/about/" property="article:author">
     <meta property="og:image" content="../assets/img/OGImg.png">
@@ -122,6 +122,7 @@
                     </style>                    
                     {%- endif -%}
                     <h1>{{page.title}}</h1>
+                    <p class="updated-post">updated at {{ page.date | date: "%-d %B %Y" }}</p>
                     {%- include Content.html -%}
                     {%- include Backlinks.html -%}
                     </div>
@@ -139,6 +140,7 @@
                         <div class="list-feed"> 
                         <a href="{{ site.baseurl }}{{post.url}}" style="text-decoration: none;display: flex;justify-content: space-between;flex-direction: row;width: 100%;">
                             <div class="writinglist-title">{{post.title }}</div>
+                            <p class="updated-feed">updated at {{ post.date | date: "%-d %B %Y" }}</p>
                         </a>
                         </div>
                     {%- endfor -%}
@@ -162,6 +164,7 @@
                              </a>
                          </div>
                      <h1>{{page.title}}</h1>
+                    <p class="updated-post">updated at {{ page.date | date: "%-d %B %Y" }}</p>
                      {%- include Content.html -%}
                      {%- include Backlinks.html -%}
                      </div>

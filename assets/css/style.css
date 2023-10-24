@@ -9,6 +9,7 @@ html[data-theme="light"] {
     --color-bg-main: #FFFFFF;
     --color-bg-sub: #FAFAFC;
     --color-text-main: #282832;
+    --color-text-updated: #515161;
     --color-text-sub: #5D5D67;
     --color-text-link: #2380ED;
     --color-border-dark: #363636;
@@ -231,6 +232,17 @@ main {
 .centre-title {
     text-align: center;
     padding: var(--padding-normal);
+}
+
+.updated-post {
+    color: var(--color-text-updated) !important;
+    font-size: var(--text-s) !important;
+    margin: 0 0 3em 0 !important;
+}
+
+.updated-feed {
+    color: var(--color-text-updated) !important;
+    font-size: var(--text-xs) !important;
 }
 
 .excerpt {
