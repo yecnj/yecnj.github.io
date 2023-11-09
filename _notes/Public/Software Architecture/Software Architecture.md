@@ -1,7 +1,7 @@
 ---
 title: Software Architecture
 feed: show
-date: 23-10-2023
+date: 09-11-2023
 permalink: /software-architecture
 ---
 **소프트웨어 아키텍쳐란?**
