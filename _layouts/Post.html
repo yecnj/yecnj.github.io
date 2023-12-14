@@ -30,6 +30,9 @@
 <html lang="en">
 
 <head>
+    {% if site.google_tag.ua %}
+      {% include GTM-head.html %}
+    {% endif %}
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Yeonjun Kim" property="og:site_name" />
     <meta
@@ -68,6 +71,9 @@
 </head>
 
 <body>
+    {% if site.google_tag.ua %}
+      {% include GTM-body.html %}
+    {% endif %}
     <main>
     {%- include Nav.html -%}
     <section class="section">

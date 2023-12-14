@@ -120,3 +120,6 @@ exclude:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+google_tag:
+  ua: GTM-PMF6N62K
