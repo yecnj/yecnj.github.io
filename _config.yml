@@ -123,3 +123,6 @@ exclude:
 
 google_tag:
   ua: GTM-PMF6N62K
+
+google_analytics:
+  ua: G-F1NHMP3JVN

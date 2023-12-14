@@ -33,6 +33,9 @@
     {% if site.google_tag.ua %}
       {% include GTM-head.html %}
     {% endif %}
+    {% if site.google_anlaytics.ua %}
+      {% include GA-head.html %}
+    {% endif %}
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Yeonjun Kim" property="og:site_name" />
     <meta
