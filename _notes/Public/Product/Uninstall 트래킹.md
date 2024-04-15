@@ -52,6 +52,7 @@ braze, airbridge 등 CRM 툴, 마테크 솔루션 등등 이렇게 불리는 물
 
 **relates to**
 
-<https://help.airbridge.io/ko/guides/uninstall-event-tracking>
+- [Airbridge Uninstall Event Tracking](https://help.airbridge.io/ko/guides/uninstall-event-tracking)
+- [Braze Uninstall Tracking](https://www.braze.com/docs/user_guide/data_and_analytics/tracking/uninstall_tracking)
 
-<https://www.braze.com/docs/user_guide/data_and_analytics/tracking/uninstall_tracking/>
+<br/>
