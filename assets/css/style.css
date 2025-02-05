@@ -446,12 +446,36 @@ pre code {
 
 }
 
-blockquote:before {
-    display: none;
+blockquote {
+    margin: 2em 0;
+    padding: 1.2em 1.8em 1.2em 3.5em;
+    background-color: var(--color-bg-sub);
+    border-radius: 0px;
+    border-left: 0px solid var(--color-text-link);
+    font-style: normal;
+    position: relative;
 }
 
-blockquote {
-    padding: 10px;
+blockquote::before {
+    content: '“';
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 3em;
+    font-family: Georgia, serif;
+    color: var(--color-text-main);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+blockquote p {
+    margin: 0;
+    color: var(--color-text-main);
+    font-style: normal;
+    font-size: var(--text-m);
+    line-height: var(--line-height-normal);
+    position: relative;
 }
 
 summary {
