@@ -4,5 +4,5 @@
 
 layout: Post
 permalink: /
-title: ~yeonjun.kim
+title: yeonjun.kim
 ---
