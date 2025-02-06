@@ -1,5 +1,5 @@
 ---
-title: BigQuery에서 자주 쓰이는 쿼리
+title: BigQuery에서 자주 쓰는 쿼리
 feed: show
 date: 24-10-2023
 permalink: /bigquery-favorite-queries

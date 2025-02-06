@@ -1,5 +1,5 @@
 ---
-title: vim command
+title: vim에서 자주 쓰는 커맨드
 feed: show
 date: 23-10-2023
 permalink: /vim-command
