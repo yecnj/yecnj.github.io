@@ -292,6 +292,7 @@ main {
     width: 100%;
     min-height: 100px;
     border-radius: 10px;
+    margin-top: 5rem;
 }
 
 .related h4 {
