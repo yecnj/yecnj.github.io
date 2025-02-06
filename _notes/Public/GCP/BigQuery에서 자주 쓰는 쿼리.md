@@ -21,7 +21,7 @@ for system_time as of timestamp_sub(current_timestamp(), interval 6 hour)
 
 ## 테이블 ddl 가져오기
 
-```
+```sql
 select
     table_name,
     ddl
@@ -31,7 +31,7 @@ from
 
 ## 재현 가능한 랜덤 생성하기
 
-```
+```sql
 select 
   row_number() over() as id,
   case 
@@ -48,14 +48,14 @@ farm_fingerprint :
 
 ## 쿼리 로그 확인
 
-```
+```sql
 with raw as (
   SELECT 
     datetime(timestamp, 'Asia/Seoul') ts, 
     protopayload_auditlog.authenticationInfo.principalEmail email, 
     protopayload_auditlog.servicedata_v1_bigquery.jobCompletedEvent.job.jobConfiguration.query.query,
     ifnull(protopayload_auditlog.servicedata_v1_bigquery.jobCompletedEvent.job.jobStatistics.totalBilledBytes/1024/1024/1024, 0) billed_gb,
-  FROM `project`.`dataset`.cloudaudit_googleapis_com_data_access_*`
+  FROM `project`.`dataset`.`cloudaudit_googleapis_com_data_access_*`
   where true
     and _table_suffix > '20241201'
     and protopayload_auditlog.servicedata_v1_bigquery.jobCompletedEvent.job.jobConfiguration.query.query is not null
