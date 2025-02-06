@@ -130,6 +130,13 @@ p {
     margin-bottom: 0.8em;
     color: var(--color-text-main);
     letter-spacing: -0.003em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 2줄 이상 되는 문단에 대해서만 line-height 증가 */
+p:not(:first-line) {
+    line-height: 1.8;
 }
 
 code {
@@ -478,6 +485,11 @@ blockquote p {
     position: relative;
 }
 
+/* 2줄 이상 되는 문단에 대해서만 line-height 증가 */
+blockquote p:not(:first-line) {
+    line-height: 1.8;
+}
+
 summary {
     display: flex;
     align-items: center;
@@ -536,7 +548,9 @@ hr {
     background-color: var(--color-border-light);
     border: 0 none;
     height: 1px;
-    margin-top: 2rem 0 0 0;
+    margin: 3rem 0;
+    opacity: 0.6;
+    width: 100%;
 }
 
 /* Blogposts: Post-heading, Post-subheading, Post-content, Related Posts*/
@@ -1111,7 +1125,6 @@ hr {
 
 .content ol {
     list-style: decimal;
-    list-style-position: outside;
 }
 
 .content li {
@@ -1119,15 +1132,30 @@ hr {
     line-height: var(--line-height-normal);
     color: inherit;
     display: list-item;
-    padding-left: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    text-indent: 0;
+    position: relative;
+}
+
+.content li p {
+    margin-left: 0.5em;  /* 줄바꿈된 텍스트 들여쓰기 */
 }
 
 .content ul ul, 
 .content ol ol,
 .content ul ol,
 .content ol ul {
-    margin: 0.6em 0 0.6em 1.5em;
+    margin: 1em 0 1em 1.5em;
     color: inherit;
+}
+
+.content ul ul li,
+.content ol ol li,
+.content ul ol li,
+.content ol ul li {
+    margin: 0.6em 0;
+    line-height: 1.6;
 }
 
 .content ul > li::before,
@@ -1174,7 +1202,6 @@ hr {
     height: auto;
     margin: 2em 0;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content table {
