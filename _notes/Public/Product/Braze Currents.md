@@ -1,6 +1,6 @@
 ---
 title: Braze Currents
-feed: hide
+feed: show
 date: 06-02-2025
 permalink: /braze-currents
 summary: Braze Currents를 사용해서 Braze 데이터를 웨어하우스에 동기화하기

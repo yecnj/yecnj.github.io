@@ -1,6 +1,6 @@
 ---
 title: Braze
-feed: hide
+feed: show
 date: 05-02-2025
 permalink: /braze-in-data-org
 summary: Braze의 소개와 데이터 조직에서 바라본 Braze 기능들
