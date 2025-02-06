@@ -2,7 +2,7 @@
 title: vim에서 자주 쓰는 커맨드
 feed: show
 date: 23-10-2023
-permalink: /vim-command
+permalink: /vim-favorite-commands
 ---
 따로 정리할만한 재미있는 vim 커맨드 모음입니다.
 
