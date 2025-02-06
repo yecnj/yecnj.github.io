@@ -1899,4 +1899,32 @@ a[href^="http"] {
     }
 }
 
+/* Utterances 스타일링 */
+.utterances {
+    max-width: 100%;
+    margin: 5rem 0 2rem 0 !important;
+    background-color: var(--color-bg-main);
+}
+
+.utterances-frame {
+    color: var(--color-text-main) !important;
+    background-color: var(--color-bg-main) !important;
+    position: static;
+    margin: 0 !important;
+    transform: none;
+}
+
+/* 다크모드 대응 */
+html[data-theme="dark"] .utterances-frame {
+    background-color: var(--color-bg-main) !important;
+}
+
+/* 모바일 환경 대응 */
+@media screen and (max-width: 768px) {
+    .utterances {
+        margin: 3rem 0 2rem 0 !important;
+        max-width: 100%;
+    }
+}
+
 
