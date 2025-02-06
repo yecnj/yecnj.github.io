@@ -22,7 +22,7 @@ Currents를 통해서
 
 일단, Braze 콘솔의 Parteners Integration > Data Export 에서 설정이 가능합니다.
 
-![Currents Configuration](/assets/img/braze-in-data-org/currents-config.png "Currents Configuration")
+![Currents Configuration](/assets/img/braze/currents-config.png "Currents Configuration")
 
 Google Cloud Storage로 동기화할때는 [[Service Account]] JSON 파일과 동기화할 버킷명을 입력해주면 됩니다.
 
@@ -42,7 +42,7 @@ S3 버킷으로 동기화할때는 JSON 파일 대신 Access Key ID, Secret Acce
 
 설정을 완료하고, GCS에 동기화된 데이터들을 살펴보면 이렇게 생겼습니다.
 
-![Currents GCS](/assets/img/braze-in-data-org/currents-gcs-folder.png "Currents GCS")
+![Currents GCS](/assets/img/braze/currents-gcs-folder.png "Currents GCS")
 
 파일 트리 최하단에는 각종 유저 이벤트들이 avro 형식의 파일로 저장되어 있습니다.
 

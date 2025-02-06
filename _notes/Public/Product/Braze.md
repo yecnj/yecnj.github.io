@@ -2,11 +2,11 @@
 title: Braze
 feed: show
 date: 05-02-2025
-permalink: /braze-in-data-org
+permalink: /braze
 summary: Braze의 소개와 데이터 조직에서 바라본 Braze 기능들
 ---
 
-![Braze Logo](/assets/img/braze-in-data-org/braze.png "Braze Logo")
+![Braze Logo](/assets/img/braze/braze.png "Braze Logo")
 
 ## Braze란?
 
@@ -44,7 +44,7 @@ Braze는 아래와 같은 고도화된 마케팅 기능을 여럿 제공합니�
 
 따라서, 가장 먼저
 
-![Braze to BigQuery](/assets/img/braze-in-data-org/braze-to-bigquery.png "Braze to BigQuery")
+![Braze to BigQuery](/assets/img/braze/braze-to-bigquery.png "Braze to BigQuery")
 
 > 자체 구축된 웨어하우스에서 Braze에서 발생한 데이터를 뜯어볼 수 있기를 원했습니다.
 
@@ -58,7 +58,7 @@ Braze는 아래와 같은 고도화된 마케팅 기능을 여럿 제공합니�
 
 그래서,
 
-![BigQuery to Braze](/assets/img/braze-in-data-org/bigquery-to-braze.png "BigQuery to Braze")
+![BigQuery to Braze](/assets/img/braze/bigquery-to-braze.png "BigQuery to Braze")
 
 > 반대로 구축된 웨어하우스에서 Braze로 동기화하는 과정도 만들어지기를 바랬습니다.
 
