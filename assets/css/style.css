@@ -1185,8 +1185,8 @@ hr {
 .content pre {
     margin: 1.5em 0;
     padding: 1.5em;
-    background: #f6f8fa;  /* GitHub 스타일 배경색 */
-    border: 1px solid #e1e4e8;  /* 테두리 추가 */
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
     border-radius: 6px;
     overflow-x: auto;
     position: relative;
@@ -1196,19 +1196,14 @@ hr {
     font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', monospace;
     font-size: 0.9em;
     line-height: 1.5;
-    color: #24292e;  /* GitHub 기본 텍스트 색상 */
+    color: #24292e;
     background: none;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
     tab-size: 4;
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
     hyphens: none;
     padding: 0;
     border: none;
@@ -2005,6 +2000,38 @@ html[data-theme="dark"] .utterances-frame {
     .utterances {
         margin: 3rem 0 2rem 0 !important;
         max-width: 100%;
+    }
+}
+
+/* 모바일 환경에서의 코드 블록 스타일 */
+@media screen and (max-width: 768px) {
+    .content pre {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .content pre code {
+        font-size: 0.75em;  /* 모바일에서 더 작게 */
+        line-height: 1.4;
+    }
+
+    .content p code,
+    .content li code {
+        font-size: 0.8em;  /* 인라인 코드도 작게 */
+        padding: 0.15em 0.3em;
+    }
+}
+
+/* 더 작은 모바일 화면 */
+@media screen and (max-width: 480px) {
+    .content pre {
+        margin: 0.8rem 0;
+        padding: 0.8rem;
+    }
+
+    .content pre code {
+        font-size: 0.7em;  /* 더 작은 화면에서는 더 작게 */
+        line-height: 1.3;
     }
 }
 
