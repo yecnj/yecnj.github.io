@@ -1116,7 +1116,7 @@ hr {
 
 .content ul, .content ol {
     padding-left: 1.5em;
-    margin: 2em 0;
+    margin: 0;
     color: var(--color-text-main);
 }
 
@@ -1129,35 +1129,20 @@ hr {
 }
 
 .content li {
-    margin: 0.8em 0;
-    line-height: var(--line-height-normal);
-    color: inherit;
-    display: list-item;
-    padding-left: 0;
-    padding-right: 0;
-    text-indent: 0;
+    margin: 0.5em 0;
+    padding: 0 0 0 0.5em;  /* 패딩 조정 */
     position: relative;
+    line-height: var(--text-leading-normal);
+    font-size: var(--text-m);
+    color: var(--color-text-main);
 }
 
-.content li p {
-    margin-left: 0.5em;  /* 줄바꿈된 텍스트 들여쓰기 */
+
+.content ul > li > ul > li:last-child,
+.content ol > li > ol > li:last-child {
+    padding-bottom: 1em;  /* depth2 아이템 패딩 */
 }
 
-.content ul ul, 
-.content ol ol,
-.content ul ol,
-.content ol ul {
-    margin: 1em 0 1em 1.5em;
-    color: inherit;
-}
-
-.content ul ul li,
-.content ol ol li,
-.content ul ol li,
-.content ol ul li {
-    margin: 0.6em 0;
-    line-height: 1.6;
-}
 
 .content ul > li::before,
 .content ol > li::before {
@@ -1166,7 +1151,7 @@ hr {
 
 .content ul > li,
 .content ol > li {
-    padding-left: 0.5rem;
+    padding-left: 0.3rem;
 }
 
 .content blockquote {
