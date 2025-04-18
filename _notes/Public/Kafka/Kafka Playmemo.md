@@ -50,28 +50,36 @@ permalink: /kafka-playmemo
         A1["타 개발 조직 <br> Producer/Consumer"]
         A2["데이터 조직 <br> Kafka Connect 기반"]
     end
-    A1 -->|메시지 송수신| K1["Kafka 클러스터 A"]
-    A2 -->|커넥터 기반 운영| K2["Kafka 클러스터 B"]
-    K2 --> KafkaConnect
-    SR1 --> AR -->|배포 시 다운로드| KafkaConnect
+
+    subgraph SourceRepositories["소스 레포지토리"]
+        SR1["소스 레포지토리"]
+        SR2["소스 레포지토리"]
+        SR3["소스 레포지토리"]
+    end
+
+    subgraph S3["S3 아티팩트 저장소"]
+        AR["커넥터 및 SMT"]
+    end
+
+    SR1 & SR2 & SR3 --> AR
+
+    A1 -->|메시지 송수신| K1["Kafka 클러스터"]
+    A2 -->|커넥터 기반 운영| K2["데이터 Kafka 클러스터"]
+    K2 --> SC
+
     subgraph KafkaConnect["Connect 클러스터"]
+        PP["Plugin Path"]
         SC["Source Connector <br> (DB, Kafka 토픽 등)"]
         SMT["SMT 변환"]
         SK["Sink Connector <br> (BigQuery)"]
     end
+
+    AR -->|배포 시 다운로드| PP
     SC --> SMT --> SK --> BQ["BigQuery"]
-    SR1["소스 레포지토리"]
-    SR2["소스 레포지토리"]
-    SR3["소스 레포지토리"]
-    subgraph Artifacts["S3 아티팩트 저장소"]
-        AR["커넥터 및 SMT"]
-    end
-    SR2 --> AR
-    SR3 --> AR
+
     subgraph Downstream["Downstream 처리"]
         BQ --> DBT["dbt 모델"]
     end
-    SK --> BQ
 </div>
 
 <br/>
@@ -104,6 +112,42 @@ permalink: /kafka-playmemo
 ## 겪은 문제들과 원인
 
 ### 1. 커넥트 클러스터 형상 관리의 어려움
+<div class="mermaid">
+flowchart TD
+    subgraph SourceRepositories["소스 레포지토리"]
+        SR1["소스 레포지토리"]
+        SR2["소스 레포지토리"]
+        SR3["소스 레포지토리"]
+    end
+    
+    subgraph KafkaClusters["카프카 클러스터"]
+        K1["Kafka Cluster 1"]
+        K2["Kafka Cluster 2"]
+        K3["Kafka Cluster 3"]
+    end
+
+    subgraph S3["S3 아티팩트 저장소"]
+        AR["커넥터 및 SMT"]
+    end
+
+    subgraph ConnectClusters["커넥트 클러스터"]
+        C1["Connect Cluster 1"]
+        C2["Connect Cluster 2"]
+        C3["Connect Cluster 3"]
+    end
+
+    SR1 --> AR
+    SR2 --> AR
+    SR3 --> AR
+
+    K1 --> C1
+    K2 --> C2
+    K3 --> C3
+
+    AR --> C1
+    AR --> C2
+    AR --> C3
+</div>
 여러 Github 레포지토리에 분산된 S3에 아티팩트를 배포하는 파이프라인이 있습니다. 이 과정에서 여러 문제들이 발생했습니다:
 - 각 카프카 클러스터별로 중복된 구성의 커넥터 클러스터를 유지해야 함
 - 현재 각 커넥트 클러스터가 어떤 아티팩트들을 중심으로 배포되었는지 파악이 어려움
@@ -197,7 +241,7 @@ permalink: /kafka-playmemo
 
 - 단기간내에 가시적인 성과를 낼 수 있어야 하고
 - 기술적으로 현실 가능해야 하며
-- 너무 하찮아서도 안되며
+- 너무 하찮어서도 안되며
 - 내부 도메인 전문가와 개발팀이 협업할 수 있는 구조여야 합니다.
 
 말하자면, **완벽하고 멋진 기술**이 아니라 **Use Case에 적용 가능하고 작동하는 기술**이 더 중요합니다.
