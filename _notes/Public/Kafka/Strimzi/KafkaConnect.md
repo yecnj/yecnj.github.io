@@ -118,8 +118,6 @@ USER 1001
 
 예를 들어, Amazon DocumentDB의 [설명서](https://docs.aws.amazon.com/ko_kr/documentdb/latest/developerguide/connect_programmatically.html) 에 따르면 특정버전 이상부터 퍼블릭 키를 반드시 요구하는데요.
 
-
-
 > 전송 중인 데이터를 암호화하려면 다음 작업을 사용하여 이름이 global-bundle.pem인 Amazon DocumentDB에 대한 퍼블릭 키를 다운로드합니다.
 >
 > wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
@@ -129,9 +127,26 @@ USER 1001
 
 이런 경우, 커넥트 클러스터에서 사용할 수 있는 Truststore 설정을 추가해야합니다.
 
-```yaml
+dockerfile 내에서 기본 truststore 설정을 복사한 다음, DocumentDB가 요구하는 퍼블릭 키를 추가하는 단계를 만들었습니다.
 
+```dockerfile
+# RDS 글로벌 인증서 번들 다운로드 및 신뢰 저장소 추가 구성
+RUN mkdir -p /tmp/certs && \
+    cp $JAVA_HOME/lib/security/cacerts /tmp/certs/rds-truststore.jks && \
+    chmod +w /tmp/certs/rds-truststore.jks && \
+    curl -sS "https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem" > /tmp/certs/global-bundle.pem && \
+    cd /tmp/certs && \
+    awk 'split_after == 1 {n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1}{print > "rds-ca-" n ".pem"}' < global-bundle.pem && \
+    for CERT in rds-ca-*; do \
+      alias=$(openssl x509 -noout -subject -in "$CERT" | sed -e 's/^subject= //' -e 's/, /, /g'); \
+      keytool -import -file "$CERT" -alias "$alias" -storepass changeit -keystore rds-truststore.jks -noprompt; \
+      rm "$CERT"; \
+    done && \
+    rm global-bundle.pem && \
+    mv rds-truststore.jks /opt/kafka/custom-truststore.jks
 ```
+
+
 
 ### nodeAffinity 설정
 
@@ -154,10 +169,37 @@ USER 1001
 
 ### 커넥트 클러스터 접근제어
 
-커넥트 클러스터는 일단 기본적으로 netpol로 접근이 막혀있습니다.
+저는 Redpanda 콘솔을 통해서 Connect 클러스터에 접근하고 싶었는데요
 
-저는 Redpanda 콘솔을 통해서 Connect 클러스터
+![connect-cluster-resource](/assets/img/kafka/connect-cluster-resource.jpg "connect-cluster-resource")
 
+위에서 한 설정들로 커넥트 클러스터 리소스를 띄워보면 하위 리소스로 netpol이 함께 올라오며 API 포트의 접근이 막혀있습니다.
+
+```yaml
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              strimzi.io/cluster: connect-cluster
+              strimzi.io/kind: KafkaConnect
+              strimzi.io/name: connect-cluster-connect
+        - podSelector:
+            matchLabels:
+              strimzi.io/kind: cluster-operator
+      ports:
+        - port: 8083
+          protocol: TCP
+    - ports:
+        - port: 9404
+          protocol: TCP
+```
+- strimzi 관련 라벨을 가진 파드들만 8083 포트로 접근 가능
+- 일반적으로 9404 포트로 접근 가능
+
+## 불편했던 점
+
+- https://github.com/strimzi/strimzi-kafka-operator/issues/6339
+- https://github.com/orgs/strimzi/discussions/6853
 
 ## 완성
 
