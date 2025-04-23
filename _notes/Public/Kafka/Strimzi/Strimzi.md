@@ -25,6 +25,8 @@ permalink: /strimzi-connect
 
 ![strimzi](/assets/img/kafka/strimzi_logo.png "strimzi")
 
+<br/>
+
 Strimzi는 Kafka 관련 리소스를 쿠버네티스 클러스터 위에 쉽게 설치하고 관리할 수 있도록 돕는 오픈소스 프로젝트입니다.
 
 ArgoCD와 유사하게 [[Cloud Native Computing Foundation(CNCF)]]의 Incubating 프로젝트로 채택되어 활발히 발전 중입니다.
@@ -146,7 +148,20 @@ flowchart TB
 
 앞서 배포한 strimzi-kafka-operator 와 KafkaConnect CRD를 통해서 커넥트 클러스터를 생성할 수 있게 됩니다.
 
-실제로 클러스터를 어떤 설정으로 띄우냐는 [Strimzi 공식 문서](https://strimzi.io/docs/operators/latest/configuring.html) 를 많이 참고해야합니다.
+```yaml
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: my-connect-cluster
+  annotations:
+    strimzi.io/use-connector-resources: "true"
+spec:
+  replicas: 3
+```
+
+실제로 클러스터를 어떤 설정으로 띄우냐는 커스텀 리소스이긴해서요.
+
+암만 기본 쿠버네티스 리소스와 유사하게 생겼더라도 방심하지 않고 [Strimzi 공식 문서](https://strimzi.io/docs/operators/latest/configuring.html) 를 많이 참고해야합니다.
 
 그런데.. 공식 문서가 무지하게 길고, 읽기 복잡합니다.
 
@@ -154,8 +169,41 @@ flowchart TB
 
 그래서, 유용했던 몇가지 옵션만 별도의 문서 [[Strimzi KafkaConnect 구성 및 설정 예시]]로 정리해두었습니다.
 
-
-
 ## 커넥터 관리
 
+기존에는 이런 식으로 커넥터를 생성하는 것이 일반적이었는데요.
+
+```json
+{
+    "name": "my-connector",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+        "connection.url": "jdbc:mysql://mysql:3306/mydatabase",
+        "connection.user": "myuser",
+        "connection.password": "mypassword",
+        "poll.interval.ms": "1000",
+        "poll.max.batch.size": "1000",
+        "poll.max.records": "1000",
+        "poll.max.bytes": "1048576",
+        "table.whitelist": "mytable",
+        "topic.prefix": "my-prefix-",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractField$Key",
+        "transforms.unwrap.field": "id"
+        "transforms.unwrap.drop.tombstones": "false",
+        "transforms.unwrap.add.tombstones": "true",
+    }
+}
+```
+
+느낌이 오셨겠지만, 이보다 더 긴 설정이 들어가거나 똑같은 설정이 반복되었습니다.
+
+이에 따라, **커넥터 사용으로 재사용성 증대** 라는 목표가 힘들어지고, 이어서 카프카 사용까지 꺼리게 되기도 했습니다.
+
+그래서 저는 Strimzi의 KafkaConnector 리소스와 Helm Named Templates를 통해서 커넥터를 관리하기로 생각했습니다.
+
+```text
+```
 
