@@ -2421,7 +2421,9 @@ body.has-navbar-fixed-bottom {
     transform: translateY(-5px) rotate(-45deg); }
 
 .navbar-menu {
-  display: none; }
+  display: none;
+  margin-right: 2rem;
+}
 
 .navbar-item,
 .navbar-link {
@@ -3910,5 +3912,13 @@ code {
 p code {
   position: relative;
   top: -0.1em;
+}
+
+/* YAML 주석 스타일 수정 */
+.language-yaml .comment,
+.language-yaml .line-comment {
+  color: #6a737d;
+  font-style: italic;
+  background-color: transparent;
 }
   
