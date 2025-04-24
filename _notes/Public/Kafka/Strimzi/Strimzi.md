@@ -3,7 +3,6 @@ title: Strimzi를 통한 커넥트 클러스터 및 커넥터 관리
 feed: show
 date: 23-04-2025
 permalink: /strimzi-connect-and-connector
-render_with_liquid: false
 ---
 
 > 배경 설명은 앞선 포스트 [[Kafka 파이프라인 플레이메모]]를 참고해주세요.
@@ -222,6 +221,7 @@ spec:
 우선, 아래와 같이 자주 사용하는 커넥터에 대한 tpl 파일에 `connector.debeziumMysqlSourceConnector`를 정의합니다.
 
 ```yaml
+{% raw %}
 {{- define "connector.debeziumMysqlSourceConnector" -}}
 
 {{- $version := .connector.version }}
@@ -251,6 +251,7 @@ spec:
     database.include.list: "{{ $database }}"
     table.include.list: "{{ $database }}.{{ $table }}"
     ...
+{% endraw %}
 ```
 
 tpl 파일에서는 커넥터 종류 별로 반복되는 설정들을 관리합니다.
@@ -266,11 +267,13 @@ tpl 파일에서는 커넥터 종류 별로 반복되는 설정들을 관리합�
 
 그리고, template 파일에서 이 Named template을 사용합니다.
 
-```
+```yaml
+{% raw %}
 {{- range .Values.connectors }}
 ---
 {{- include "connector.debeziumMysqlSourceConnector" (dict "environment" $.Values.environment "connector" . ) }}
 {{- end }}
+{% endraw %}
 ```
 
 이제 Helm 차트 내 values 파일에 이렇게 정의해주면 간단하게 커넥터가 늘어납니다.
