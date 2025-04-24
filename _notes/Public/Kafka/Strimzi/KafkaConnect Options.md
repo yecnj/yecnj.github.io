@@ -2,7 +2,7 @@
 title: Strimzi KafkaConnect 구성 및 설정 예시
 feed: show
 date: 24-04-2025
-permalink: /strimzi-kafkaconnect
+permalink: /strimzi-connect-options
 ---
 
 실제로 클러스터를 어떤 설정으로 띄우냐는 [Strimzi 공식 문서](https://strimzi.io/docs/operators/latest/configuring.html) 를 많이 참고해야합니다.

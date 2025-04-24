@@ -2,7 +2,7 @@
 title: Strimzi를 통한 커넥트 클러스터 및 커넥터 관리
 feed: show
 date: 23-04-2025
-permalink: /strimzi-connect
+permalink: /strimzi-connect-and-connector
 render_with_liquid: false
 ---
 
