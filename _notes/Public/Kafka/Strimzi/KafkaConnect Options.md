@@ -1,5 +1,5 @@
 ---
-title: Strimzi KafkaConnect 구성 및 설정 예시
+title: Strimzi KafkaConnect 설정 예시
 feed: show
 date: 24-04-2025
 permalink: /strimzi-connect-options

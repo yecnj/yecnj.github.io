@@ -500,13 +500,13 @@ a.has-text-black:hover, a.has-text-black:focus {
   background-color: #0a0a0a !important; }
 
 .has-text-light {
-  color: var(--color-bg-main); !important; }
+  color: var(--color-bg-main) !important; }
 
 a.has-text-light:hover, a.has-text-light:focus {
   color: #dbdbdb !important; }
 
 .has-background-light {
-  background-color: var(--color-bg-main); !important; }
+  background-color: var(--color-bg-main) !important; }
 
 .has-text-dark {
   color: var(--color-text-main) !important; }
@@ -3920,5 +3920,14 @@ p code {
   color: #6a737d;
   font-style: italic;
   background-color: transparent;
+}
+
+/* 긴 텍스트 줄바꿈 처리 */
+code,
+pre,
+li {
+  overflow-wrap: break-word;
+  word-wrap: break-word; /* 이전 브라우저 호환성 */
+  word-break: break-all; /* 더 강력한 줄바꿈이 필요할 경우 */
 }
   
