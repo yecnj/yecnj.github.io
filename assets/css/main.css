@@ -2374,8 +2374,7 @@ body.has-navbar-fixed-bottom {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  min-height: 3.25rem;
- }
+  min-height: 3.25rem; }
 
 .navbar-brand a.navbar-item:focus, .navbar-brand a.navbar-item:hover {
   background-color: transparent; }
@@ -3847,6 +3846,22 @@ a.navbar-item,
   position: relative;
 }
 
+.note-page-section > h1 {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.note-page-section > .updated-post {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.jumbo {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.block {
+  padding: 0 1rem 0 1rem;
+} 
+
 .section.is-note .box {
   background: var(--color-bg-main); }
 
@@ -3930,4 +3945,11 @@ li {
   word-wrap: break-word; /* 이전 브라우저 호환성 */
   word-break: break-all; /* 더 강력한 줄바꿈이 필요할 경우 */
 }
-  
+
+/* 코드 블록 및 인라인 코드 폰트 크기 일관성 및 자동 조정 방지 */
+code,
+pre {
+  font-size: 0.875em !important; /* pre 요소와 동일하게 맞춤 */
+  -webkit-text-size-adjust: 100%; /* iOS Safari 텍스트 크기 자동 조정 방지 */
+  text-size-adjust: 100%; /* 표준 속성 */
+}
