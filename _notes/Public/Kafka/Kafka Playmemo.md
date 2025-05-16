@@ -1,5 +1,6 @@
 ---
 title: Kafka 파이프라인 플레이메모
+og_image: /assets/img/kafka/logo.png
 feed: show
 date: 17-04-2025
 permalink: /kafka-playmemo
