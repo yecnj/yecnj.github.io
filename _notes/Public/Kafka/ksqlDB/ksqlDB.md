@@ -1,5 +1,6 @@
 ---
 title: ksqlDB를 통한 스트리밍 파이프라인 구성
+og_image: /assets/img/ksqldb/logo.png
 feed: show
 date: 16-05-2025
 permalink: /ksqlDB

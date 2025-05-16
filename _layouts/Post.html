@@ -42,7 +42,14 @@
         content="Data Engineer"
         property="og:description">
     <meta content="{{ site.url }}/about/" property="article:author">
-    <meta property="og:image" content="../assets/img/OGImg.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    {% if page.og_image %}
+    <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}" />
+    <meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
+    {% else %}
+    <meta name="twitter:image" content="{{ site.url }}/assets/img/OGImg.png" />
+    <meta property="og:image" content="{{ site.url }}/assets/img/OGImg.png">
+    {% endif %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
