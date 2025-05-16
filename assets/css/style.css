@@ -99,7 +99,7 @@ h2 {
 h3 {
     font-size: var(--text-xl);
     line-height: var(--text-leading-normal);
-    font-weight: var(--text-weight-normal);
+    font-weight: var(--text-weight-bold);
     padding: var(--padding-normal) 0;
 }
 
