@@ -1,6 +1,7 @@
 ---
 title: Cloud Native Computing Foundation(CNCF)
-feed: hide
+feed: show
+og_image: /assets/img/etc/Cncf-logo.svg.png
 date: 23-04-2025
 permalink: /cncf
 ---
