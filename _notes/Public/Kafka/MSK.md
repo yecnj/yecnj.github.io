@@ -1,6 +1,6 @@
 ---
-title: MSK
-feed: hide
+title: AWS MSK (Managed Streaming for Kafka)
+feed: show
 date: 16-04-2025
 permalink: /kafka-msk
 summary: MSK의 소개
